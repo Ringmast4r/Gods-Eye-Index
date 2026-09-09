@@ -21,17 +21,11 @@ OUT = ROOT / "README.md"
 USER, REPO = "Ringmast4r", "Gods-Eye-Index"
 PRIMARY, ACCENT = "166534", "22C55E"
 
-TIER_TITLE = {
-    "core": "ls --core",
-    "small": "ls --small-builds",
-    "derivative": "ls --derivatives",
-    "namesake": "ls --not-these",
-}
+TIER_TITLE = {"core": "ls --core"}
 TIER_BLURB = {
-    "core": "The three that blew up. Everything else in this list is downstream of one of them.",
-    "small": "Independent builds worth reading. Smaller, but each does one thing the big three do not.",
-    "derivative": "Forks, ports, rebrands and bridges of World Monitor and God's Eye View.",
-    "namesake": "Same name, different thing. Listed so the search results make sense.",
+    "core": "Active and massive. Forks, rebrands, dead clones and same-name projects are "
+            "deliberately not listed; if it is not pushing commits and pulling thousands of "
+            "stars it does not belong here.",
 }
 
 
@@ -115,7 +109,7 @@ def main() -> None:
     w("```bash")
     w("you@github:~$ cat gods-eye-index.txt\n")
     w("  PURPOSE:        One list of every \"God's Eye\" style live world-map / intel dashboard on GitHub")
-    w(f"  TRACKED:        {len(tracked)} projects ({len(core)} core, {len(tracked) - len(core)} downstream), {len(rows) - len(tracked)} namesakes flagged")
+    w(f"  TRACKED:        {len(tracked)} projects, all active, all in the thousands of stars")
     w(f"  COMBINED:       {total_stars:,} stars across the tracked set")
     w(f"  FEEDS:          {len(feeds)} shared upstream data sources, {keyless_feeds} of them keyless")
     w("  SOURCE:         data/projects.db is the truth; README is generated from it")
@@ -123,9 +117,9 @@ def main() -> None:
     w("  STATUS:         [ ACTIVE ]")
     w("```\n")
     w("> In August 2026 \"spy satellite simulator in your browser\" repos took over GitHub Trending. "
-      "This index tracks them in one place, with live stars, what each one actually does, "
-      "what it is built on, and which upstream feeds they all share, so the list stays "
-      "useful after the hype cycle moves on.\n")
+      "This index tracks the ones that matter, with live stars, what each one actually does, "
+      "what it is built on, and which upstream feeds they share. Small clones, forks and "
+      "rebrands are left out on purpose.\n")
     w("---\n")
 
     # ------------------------------------------------------------ stats
@@ -142,7 +136,7 @@ def main() -> None:
     w("---\n")
 
     # ------------------------------------------------------------ tiers
-    for tier in ("core", "small", "derivative", "namesake"):
+    for tier in ("core",):
         grp = [r for r in rows if r["tier"] == tier]
         if not grp:
             continue

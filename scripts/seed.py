@@ -10,6 +10,10 @@ This file is the editing surface. Add or fix a project here, then run:
 Never hand-edit the .db; it is regenerated from this script. Live stats
 (stars, forks, pushed_at, license, ...) are filled by refresh.py and kept
 across re-seeds.
+
+Only projects that are ACTIVE (pushing commits) and MASSIVE (thousands of
+stars) belong here. Forks, rebrands, dead clones and same-name projects were
+dropped on purpose; do not add them back.
 """
 from __future__ import annotations
 
@@ -19,10 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "projects.db"
 
-# tier: core = the ones that blew up | derivative = forks, ports, rebrands,
-# bridges | small = independent small builds | namesake = same name, not a map
 PROJECTS = [
-    # ---------------------------------------------------------------- core
     dict(
         slug="koala73/worldmonitor",
         name="World Monitor",
@@ -142,304 +143,44 @@ PROJECTS = [
         ),
         homepage="https://osirisai.live",
     ),
-    # --------------------------------------------------------------- small
-    dict(
-        slug="VrushankPatel/godseye",
-        name="Godseye 1.0",
-        tier="small",
-        summary="Frontend-only React + CesiumJS BYOK globe with the longest layer list of "
-        "the small builds: buoys, METAR, SIGMET, aurora, Wikidata conflicts, DOE outages.",
-        overview=(
-            "React + Vite + CesiumJS + Tailwind + Zustand, no backend at all: every feed "
-            "is fetched from the browser, so keyed sources need your own keys in a local "
-            "secrets file. Inspired by Bilawal's WorldView write-up. Layers beyond the "
-            "usual flights / satellites / quakes / CCTV: GDACS disaster alerts, EONET "
-            "hazards, IRIS seismic stations, OurAirports, WFP ports + AISstream vessels, "
-            "DOE ODIN outages + WRI power plants, NWS alert polygons, NDBC ocean buoys, "
-            "Smithsonian volcanic activity, SWPC aurora and GOES flares, METAR flight "
-            "categories, AIRMET/SIGMET hazard polygons, Open-Meteo weather and AQI grids, "
-            "Wikidata SPARQL armed conflicts, military bases (NTAD + OSM), restricted "
-            "airspace. Vision modes: NVG, FLIR, CRT, Anime, God Mode. The author notes "
-            "Codex was used for scaffolding. Hosted at godseye-x.web.app."
-        ),
-        engine="CesiumJS",
-        basemap="Google 3D Tiles (BYOK) or Cesium default",
-        backend="none (browser fetch only)",
-        stores_history="no",
-        keyless_start="partial; keyed layers stay empty",
-        layers="30+ toggles, see overview",
-        keys="BYOK: Google 3D, YouTube, Guardian, AISStream, FIRMS",
-        weak="browser-direct fetches hit CORS and rate limits; hosted build depends on the author's keys",
-        homepage="https://godseye-x.web.app/",
-    ),
-    dict(
-        slug="noaRoblesLevy/GodsEye",
-        name="God's Eye (noaRoblesLevy)",
-        tier="small",
-        summary="Early CesiumJS + Google 3D Tiles clone with NVG/FLIR/CRT/Anime shaders and "
-        "a God Mode; successor to osint-worldmap; dead since March 2026.",
-        overview=(
-            "One of the first public clones of Bilawal's original WorldView demo, built "
-            "before God's Eye View itself was open-sourced. CesiumJS with Google "
-            "Photorealistic 3D Tiles (falls back to NASA Blue Marble), CelesTrak "
-            "satellites via SGP4, OpenSky aircraft, Austin traffic cameras, simulated "
-            "traffic particles on OSM streets, and Canvas2D post-processing shaders. Seven "
-            "source files, no backend, no license file. Its predecessor osint-worldmap is "
-            "a TypeScript version of the same idea. Last commit 2026-03-05."
-        ),
-        engine="CesiumJS",
-        basemap="Google 3D Tiles or NASA Blue Marble",
-        backend="none",
-        stores_history="no",
-        keyless_start="partial",
-        layers="satellites, aircraft, CCTV (Austin), simulated traffic",
-        keys="Google Maps (optional), Cesium ion",
-        weak="abandoned; no license",
-        homepage="",
-    ),
-    dict(
-        slug="noaRoblesLevy/osint-worldmap",
-        name="osint-worldmap",
-        tier="small",
-        summary="The TypeScript predecessor of noaRoblesLevy/GodsEye. Satellites, ships, planes on a world map.",
-        overview=(
-            "Two-day project from late February 2026 that became GodsEye a week later. "
-            "Kept here only so the lineage is complete."
-        ),
-        engine="", basemap="", backend="none", stores_history="no", keyless_start="",
-        layers="satellites, ships, planes", keys="", weak="abandoned", homepage="",
-    ),
-    dict(
-        slug="OdinMB/city-monitor",
-        name="City Monitor",
-        tier="small",
-        summary="World Monitor scaled down to one city (Berlin): cron ingest into PostgreSQL, "
-        "pre-built JSON, React + MapLibre. The only one here that actually stores data.",
-        overview=(
-            "A city-scale take: weather, transit disruptions, news, events, police "
-            "reports, air quality, wastewater virus measures, water levels, pharmacies, "
-            "traffic, construction. What makes it worth reading for anyone building their "
-            "own is the architecture: Node/Express cron jobs ingest feeds on a schedule "
-            "into PostgreSQL (Drizzle ORM) and serve pre-built JSON to a React 19 + "
-            "MapLibre SPA. GPT-5 for news summaries. Turborepo monorepo. Live at "
-            "citymonitor.app and still active."
-        ),
-        engine="MapLibre GL",
-        basemap="vector tiles",
-        backend="Express + node-cron + PostgreSQL",
-        stores_history="yes (PostgreSQL)",
-        keyless_start="needs a DATABASE_URL",
-        layers="weather, transit, news, events, police, air quality, wastewater, water, pharmacies, traffic, construction",
-        keys="PostgreSQL, OpenAI for summaries",
-        weak="single city; Render.com deploy",
-        homepage="https://citymonitor.app",
-    ),
-    dict(
-        slug="AnishNehete/TheSphere",
-        name="Sphere",
-        tier="small",
-        summary="Search-first \"why is X happening\" platform on a photorealistic globe: "
-        "entity resolution, scoped evidence, causal chain, portfolio impact.",
-        overview=(
-            "Python full-stack that treats the globe as the front door to an "
-            "investigation loop: ask a question (\"Why is TSLA down?\", \"Compare Japan vs "
-            "Korea\"), resolve the entity, retrieve scoped evidence, explain the cause, "
-            "show market and portfolio impact, save and share. A different goal from the "
-            "map-first projects: the map is context, the answer is the product. Two days "
-            "of commits in April 2026, no license."
-        ),
-        engine="photorealistic 3D globe (see repo)",
-        basemap="",
-        backend="Python",
-        stores_history="investigations are saved",
-        keyless_start="no",
-        layers="signals, markets, news, weather, conflict as evidence sources",
-        keys="LLM + market data keys",
-        weak="two-day project; no license",
-        homepage="https://thesphere.icu/",
-    ),
-    # ---------------------------------------------------------- derivative
-    dict(
-        slug="meet-the-1337/AtlasWatchtower",
-        name="Atlas Watchtower",
-        tier="derivative",
-        summary="World Monitor rebrand with desktop builds and \"30+ sources\"; one push in August 2026.",
-        overview=(
-            "A renamed World Monitor (the README still opens with \"WorldMonitor is...\"). "
-            "Same feature set: earthquakes, fires, military and commercial flights, AIS, "
-            "100+ RSS feeds with AI clustering, markets / crypto / prediction markets, "
-            "cyber threat indicators, internet outage mapping, country instability "
-            "scoring. Ships web, PWA and Windows / macOS / Linux desktop. Created and last "
-            "pushed on the same day, 2026-08-10."
-        ),
-        engine="World Monitor", basemap="", backend="World Monitor", stores_history="no",
-        keyless_start="yes", layers="World Monitor's", keys="World Monitor's",
-        weak="single-commit rebrand", homepage="https://atlas-watchtower.vercel.app",
-    ),
-    dict(
-        slug="wilson-cheng1110/WorldPredict",
-        name="Worldcast",
-        tier="derivative",
-        summary="Bridges World Monitor with the MiroFish multi-agent simulator: pick a live "
-        "event, simulate downstream effects, get notified when reality matches.",
-        overview=(
-            "Pick any event on the World Monitor globe, click \"Predict this event,\" and "
-            "MiroFish spawns thousands of AI agents with memory and personality to "
-            "simulate what happens next across markets, geopolitics and supply chain. It "
-            "then emits a checklist of verifiable watch signals and keeps scanning incoming "
-            "World Monitor events; when one matches, you get a browser notification. Runs "
-            "against included mocks without Docker. AGPL, last pushed 2026-05-11."
-        ),
-        engine="World Monitor (iframe) + own UI", basemap="", backend="bridge service on :3333",
-        stores_history="prediction history", keyless_start="mocks only",
-        layers="World Monitor's", keys="LLM keys for MiroFish",
-        weak="depends on two upstreams", homepage="https://wilson-cheng1110.github.io/WorldPredict",
-    ),
-    dict(
-        slug="dagnazty/WorldMonitor_CYD",
-        name="WorldMonitor CYD Edition",
-        tier="derivative",
-        summary="World Monitor Desktop Companion ported to a $15 ESP32 Cheap Yellow Display.",
-        overview=(
-            "Complete port of the World Monitor companion to the 2.8-inch ESP32 CYD "
-            "touchscreen: Yahoo Finance indices / VIX / yields, USGS earthquakes, NASA "
-            "EONET events, plus mock risk scores and news. Touch navigation, kiosk "
-            "auto-advance, WiFi config stored in flash. Arduino / PlatformIO with "
-            "TFT_eSPI. MIT."
-        ),
-        engine="TFT_eSPI on ESP32", basemap="none", backend="none (device polls APIs)",
-        stores_history="no", keyless_start="yes", layers="markets, earthquakes, natural events",
-        keys="none", weak="mock news and risk scores", homepage="",
-    ),
-    dict(
-        slug="sjkncs/worldmonitor-enhanced",
-        name="World Monitor Enhanced",
-        tier="derivative",
-        summary="World Monitor copy with bolted-on \"quant trading AI (75-85% accuracy),\" "
-        "10-second military tracking and energy alerts. Treat the accuracy claims as marketing.",
-        overview=(
-            "A World Monitor snapshot from March 2026 with three add-ons documented in "
-            "Chinese: a FinBERT + LSTM + GARCH trading signal generator, OpenSky military "
-            "tracking at 10-second refresh with 6-hour trajectory prediction, and an "
-            "energy-intelligence alert layer. One day of commits."
-        ),
-        engine="World Monitor", basemap="", backend="World Monitor", stores_history="no",
-        keyless_start="yes", layers="World Monitor's + quant, military, energy",
-        keys="World Monitor's", weak="unverifiable accuracy claims; one-day snapshot", homepage="",
-    ),
-    dict(
-        slug="worldmonitor-app/worldmonitor",
-        name="World Monitor Pro",
-        tier="derivative",
-        summary="Marketing repo for the paid World Monitor Pro tier (equity research, AI "
-        "morning briefs, 100+ connectors); little code of its own.",
-        overview=(
-            "Describes the Pro upsell: equity research, geopolitical frameworks, central "
-            "bank tracking, AI morning briefs to Slack / Telegram / WhatsApp, satellite "
-            "imagery and SAR, 50,000+ mapped infrastructure assets, 100+ enterprise "
-            "connectors. Useful only as a map of where the upstream project is heading "
-            "commercially."
-        ),
-        engine="World Monitor", basemap="", backend="", stores_history="Pro feature",
-        keyless_start="", layers="", keys="", weak="marketing only", homepage="",
-    ),
-    dict(
-        slug="tncsharetool/worldmonitor",
-        name="World Monitor (tncsharetool)",
-        tier="derivative",
-        summary="World Monitor re-upload pitched as an \"MMO-like world map\" creators can "
-        "monetize with affiliate flows and ad networks; 1,700-line README.",
-        overview=(
-            "A March 2026 copy of World Monitor whose README was rewritten around "
-            "monetization: affiliate flows, ad networks, community hosting. Same code, "
-            "different pitch. Points at breaths.me."
-        ),
-        engine="World Monitor", basemap="", backend="World Monitor", stores_history="no",
-        keyless_start="yes", layers="World Monitor's", keys="World Monitor's",
-        weak="re-upload with an ad pitch", homepage="https://breaths.me",
-    ),
-    dict(
-        slug="shawn14/worldview",
-        name="worldview (shawn14)",
-        tier="derivative",
-        summary="Next.js spy-satellite-sim clone from March 2026 with the untouched create-next-app README. Dead.",
-        overview=(
-            "CesiumJS + Google 3D Tiles + live aircraft / satellites + military-style "
-            "visual filters, per the description. The README is still the Next.js "
-            "boilerplate. Two days of commits."
-        ),
-        engine="CesiumJS", basemap="Google 3D Tiles", backend="Next.js", stores_history="no",
-        keyless_start="no", layers="aircraft, satellites", keys="Google Maps", weak="abandoned", homepage="",
-    ),
-    # ------------------------------------------------------------ namesake
-    dict(
-        slug="LeonardoCides/God-s-eye",
-        name="God-s-eye (LeonardoCides)",
-        tier="namesake",
-        summary="Username enumeration across social platforms. Same name, not a map.",
-        overview="Multi-threaded digital-footprint search by handle. Listed so it is not confused with the map projects.",
-        engine="", basemap="", backend="Python CLI", stores_history="", keyless_start="",
-        layers="", keys="", weak="", homepage="",
-    ),
-    dict(
-        slug="Shajal-Kumar/Gods-Eye",
-        name="Gods-Eye (Shajal-Kumar)",
-        tier="namesake",
-        summary="Human-in-the-loop OSINT framework. Same name, not a map.",
-        overview="Python OSINT framework with an analyst in the loop. Not a globe.",
-        engine="", basemap="", backend="Python", stores_history="", keyless_start="",
-        layers="", keys="", weak="", homepage="",
-    ),
-    dict(
-        slug="KamalDevelopers/GodsEyeView",
-        name="GodsEyeView (KamalDevelopers)",
-        tier="namesake",
-        summary="A hobby operating system that shows up first when you search the name.",
-        overview="\"The next most holy operating system.\" Unrelated; here so the search result makes sense.",
-        engine="", basemap="", backend="", stores_history="", keyless_start="",
-        layers="", keys="", weak="", homepage="",
-    ),
 ]
 
-# The feeds everyone builds on. key: none | free | metered | partner | bundled
+# The feeds the three are built on. key: none | free | metered | partner | bundled
 FEEDS = [
-    ("OpenSky Network", "flights", "none (anon, rate-limited; non-commercial license)", "https://opensky-network.org/api/states/all", "WM, GEV, OSR, GSE, NGE"),
+    ("OpenSky Network", "flights", "none (anon, rate-limited; non-commercial license)", "https://opensky-network.org/api/states/all", "WM, GEV, OSR"),
     ("adsb.lol", "flights + military", "none (ODbL)", "https://api.adsb.lol/v2/mil", "GEV"),
     ("Wingbits", "flights", "partner", "https://wingbits.com", "WM"),
-    ("AISStream.io", "vessels (AIS)", "free key", "https://aisstream.io", "GEV, GSE"),
-    ("CelesTrak", "satellites (TLE)", "none", "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json", "GEV, GSE, NGE"),
+    ("AISStream.io", "vessels (AIS)", "free key", "https://aisstream.io", "GEV"),
+    ("CelesTrak", "satellites (TLE)", "none", "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json", "GEV"),
     ("N2YO", "satellites", "free key", "https://www.n2yo.com/api/", "OSR"),
-    ("USGS", "earthquakes", "none", "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson", "all"),
-    ("NASA FIRMS", "active fires", "free MAP_KEY", "https://firms.modaps.eosdis.nasa.gov/api/", "GEV, OSR, GSE"),
-    ("NASA EONET", "natural events", "none", "https://eonet.gsfc.nasa.gov/api/v3/events?status=open", "OSR, GSE, CYD"),
-    ("GDACS", "disaster alerts", "none", "https://www.gdacs.org/gdacsapi/api/events/geteventlist/MAP", "GSE, OSR"),
-    ("NWS api.weather.gov", "US weather alerts", "none (User-Agent required)", "https://api.weather.gov/alerts/active", "GSE"),
-    ("NOAA SWPC", "space weather", "none", "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json", "OSR, GSE"),
-    ("NOAA NDBC", "ocean buoys", "none", "https://www.ndbc.noaa.gov/", "GSE"),
+    ("USGS", "earthquakes", "none", "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson", "WM, GEV, OSR"),
+    ("NASA FIRMS", "active fires", "free MAP_KEY", "https://firms.modaps.eosdis.nasa.gov/api/", "GEV, OSR"),
+    ("NASA EONET", "natural events", "none", "https://eonet.gsfc.nasa.gov/api/v3/events?status=open", "OSR"),
+    ("GDACS", "disaster alerts", "none", "https://www.gdacs.org/gdacsapi/api/events/geteventlist/MAP", "OSR"),
+    ("NOAA SWPC", "space weather", "none", "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json", "OSR"),
     ("Launch Library 2", "launches", "none (15/hr anon) or token", "https://ll.thespacedevs.com/2.3.0/launches/upcoming/", "GEV"),
     ("GDELT", "geo-tagged news", "none", "https://api.gdeltproject.org/api/v2/geo/geo", "GEV (fallback), OSR"),
-    ("Open-Meteo", "weather / AQI", "none", "https://open-meteo.com", "GEV, GSE"),
+    ("Open-Meteo", "weather", "none", "https://open-meteo.com", "GEV"),
     ("Radio Browser", "internet radio", "none", "https://api.radio-browser.info", "GEV"),
     ("GBFS", "bikeshare", "none", "https://gbfs.org", "GEV"),
     ("TomTom Traffic", "traffic flow", "free key (200k tiles/mo)", "https://developer.tomtom.com", "GEV"),
-    ("OpenStreetMap Overpass", "roads, military sites", "none (ODbL)", "https://overpass-api.de", "GEV, GSE"),
-    ("Google Photorealistic 3D Tiles", "3D basemap", "metered key", "https://developers.google.com/maps/documentation/tile", "GEV, GSE, NGE"),
-    ("Cesium ion", "terrain / 3D", "free token", "https://ion.cesium.com", "GEV, NGE"),
+    ("OpenStreetMap Overpass", "roads, military sites", "none (ODbL)", "https://overpass-api.de", "GEV"),
+    ("Google Photorealistic 3D Tiles", "3D basemap", "metered key", "https://developers.google.com/maps/documentation/tile", "GEV"),
+    ("Cesium ion", "terrain / 3D", "free token", "https://ion.cesium.com", "GEV"),
     ("Esri World Imagery", "satellite basemap", "none", "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer", "GEV"),
-    ("OpenFreeMap", "vector basemap", "none", "https://tiles.openfreemap.org/styles/positron", "-"),
     ("TeleGeography", "submarine cables", "bundled (CC BY-NC-SA)", "https://www.submarinecablemap.com", "GEV, WM"),
     ("OpenSanctions", "sanctions (OFAC SDN)", "none (CC-BY)", "https://www.opensanctions.org", "OSR"),
     ("NVD", "CVEs", "none (rate-limited)", "https://nvd.nist.gov/developers", "OSR"),
     ("ACLED", "conflict events", "registration key", "https://acleddata.com", "WM"),
-    ("City CCTV (Austin, Caltrans, TfL, WSDOT...)", "public cameras", "none", "https://api.tfl.gov.uk", "GEV, OSR, GSE, NGE"),
+    ("City CCTV (Austin, Caltrans, TfL, WSDOT...)", "public cameras", "none", "https://api.tfl.gov.uk", "GEV, OSR"),
 ]
-FEED_ABBR = "WM = World Monitor, GEV = God's Eye View, OSR = OSIRIS, GSE = Godseye 1.0, NGE = noaRoblesLevy/GodsEye, CYD = WorldMonitor CYD"
+FEED_ABBR = "WM = World Monitor, GEV = God's Eye View, OSR = OSIRIS"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS projects (
   slug TEXT PRIMARY KEY,
   name TEXT NOT NULL,
-  tier TEXT NOT NULL CHECK (tier IN ('core','small','derivative','namesake')),
+  tier TEXT NOT NULL CHECK (tier IN ('core')),
   summary TEXT NOT NULL,
   overview TEXT NOT NULL,
   engine TEXT, basemap TEXT, backend TEXT, stores_history TEXT, keyless_start TEXT,
