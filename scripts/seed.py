@@ -176,6 +176,41 @@ FEEDS = [
 ]
 FEED_ABBR = "WM = World Monitor, GEV = God's Eye View, OSR = OSIRIS"
 
+# Hosted products in the same space with NO public repo. Tracked because they
+# are direct competitors, not because you can clone them.
+PRODUCTS = [
+    dict(
+        slug="war-watch.com",
+        name="WarWatch",
+        url="https://www.war-watch.com/",
+        summary="Closed-source Next.js SaaS: 3D conflict globe scored from 45 news/OSINT "
+        "sources, vessel + aircraft tracking, strait transit monitors, AI daily reports. "
+        "Login, free tier and paid pricing; no GitHub.",
+        overview=(
+            "\"Live global conflict map.\" Tracks armed conflict from 45 wire services, "
+            "regional press, verified Telegram channels and geolocated incident feeds, and "
+            "scores every country on how much conflict reporting it is generating (their "
+            "own caveat: severity measures reporting volume per country, not casualties or "
+            "territory). Click a country for its dossier, a marker for an alert, a strait "
+            "for its transit monitor. Also: OSINT news feed, live streams, commodities "
+            "tape, top-conflicts ranking with live report counts, live vessel and aircraft "
+            "tracking, military site monitoring, AI-generated War Daily Reports. Three tiers: "
+            "Free (map, HIGH-priority feed, country scores), Premium at EUR 26.99 a year "
+            "(CRITICAL alerts, live ADS-B + naval + 100 military sites, 1,419 supply-chain "
+            "assets, 18 strait monitors, 70 commodities, country dossiers, daily reports by "
+            "email) and an API tier at EUR 279.99 a year with 10,000 requests a month. Built on "
+            "Next.js (App Router build chunks visible in the page source). Has LOGIN, JOIN "
+            "FREE and PRICING, and no source link anywhere on the site. Not to be confused "
+            "with warwatchlive.com (a different one-page conflict site), warmonit.com (a "
+            "rebranded World Monitor deployment) or nitinchhabria89/WarWatch.World (an "
+            "unrelated 3-star MIT repo)."
+        ),
+        stack="Next.js, 3D globe, market tape",
+        pricing="Free / Premium EUR 26.99 a year / API EUR 279.99 a year (10k req per month)",
+        status="live",
+    ),
+]
+
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS projects (
   slug TEXT PRIMARY KEY,
@@ -196,6 +231,14 @@ CREATE TABLE IF NOT EXISTS feeds (
   key_required TEXT NOT NULL,
   url TEXT NOT NULL,
   used_by TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS products (
+  slug TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  overview TEXT NOT NULL,
+  stack TEXT, pricing TEXT, status TEXT
 );
 CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 """
@@ -227,11 +270,19 @@ def main() -> None:
     con.execute("DELETE FROM feeds")
     con.executemany("INSERT INTO feeds VALUES (?,?,?,?,?)", FEEDS)
     con.execute("INSERT OR REPLACE INTO meta VALUES ('feed_abbr', ?)", (FEED_ABBR,))
+
+    con.execute("DELETE FROM products")
+    for p in PRODUCTS:
+        cols = list(p.keys())
+        con.execute(
+            f"INSERT INTO products ({', '.join(cols)}) VALUES ({', '.join('?' * len(cols))})",
+            [p[c] for c in cols])
     con.commit()
 
     n = con.execute("SELECT count(*) FROM projects").fetchone()[0]
     f = con.execute("SELECT count(*) FROM feeds").fetchone()[0]
-    print(f"seeded {n} projects, {f} feeds -> {DB}")
+    pr = con.execute("SELECT count(*) FROM products").fetchone()[0]
+    print(f"seeded {n} projects, {f} feeds, {pr} closed-source products -> {DB}")
 
 
 if __name__ == "__main__":

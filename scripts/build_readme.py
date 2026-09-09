@@ -57,6 +57,7 @@ def main() -> None:
         "SELECT * FROM projects ORDER BY CASE tier WHEN 'core' THEN 0 WHEN 'small' THEN 1 "
         "WHEN 'derivative' THEN 2 ELSE 3 END, stars DESC, slug").fetchall()
     feeds = con.execute("SELECT * FROM feeds ORDER BY domain, name").fetchall()
+    products = con.execute("SELECT * FROM products ORDER BY name").fetchall()
     meta = dict(con.execute("SELECT k, v FROM meta"))
     refreshed = meta.get("refreshed_at", "never")
 
@@ -168,6 +169,20 @@ def main() -> None:
                 w(f"| **Keys** | {cell(r['keys'])} |")
                 w(f"| **Weak spots** | {cell(r['weak'])} |")
                 w("")
+        w("---\n")
+
+    # ------------------------------------------------------------ closed source
+    if products:
+        w("## `> ls --closed-source`\n")
+        w("Hosted competitors with no public repo. Listed so the picture is complete, not because you can clone them.\n")
+        for p in products:
+            w(f"### [{p['name']}]({p['url']})\n")
+            bits = [f"`{p['status']}`", f"`{cell(p['stack'])}`"]
+            if p["pricing"]:
+                bits.append(f"`{cell(p['pricing'])}`")
+            w(" · ".join(bits) + f" · [{p['slug']}]({p['url']})\n")
+            w(f"**{p['summary']}**\n")
+            w(f"{p['overview']}\n")
         w("---\n")
 
     # ------------------------------------------------------------ diff

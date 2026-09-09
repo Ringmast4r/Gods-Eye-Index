@@ -1,13 +1,13 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:166534&height=220&section=header&text=GODS%20EYE%20INDEX&fontSize=64&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=3%20projects%20%7C%20114%2C660%20combined%20stars%20%7C%2026%20shared%20feeds%20%7C%20tracked%2C%20not%20starred&descSize=18&descAlignY=58"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:166534&height=220&section=header&text=GODS%20EYE%20INDEX&fontSize=64&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=3%20projects%20%7C%20114%2C664%20combined%20stars%20%7C%2026%20shared%20feeds%20%7C%20tracked%2C%20not%20starred&descSize=18&descAlignY=58"/>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=22C55E&center=true&vCenter=true&multiline=true&repeat=true&width=950&height=80&lines=Every+God%27s+Eye+style+world+map+in+one+list.;World+Monitor+%C2%B7+God%27s+Eye+View+%C2%B7+OSIRIS+%C2%B7+and+the+rest;Tracked+here+so+I+don%27t+have+to+star+them+all.)](https://git.io/typing-svg)
 
 <br>
 
 [![Projects](https://img.shields.io/badge/Projects-3-166534?style=for-the-badge&logo=github&logoColor=white)](#-ls---core)
-[![Combined stars](https://img.shields.io/badge/Combined_stars-114%2C660-22C55E?style=for-the-badge&logo=github&logoColor=white)](#-stats---live)
+[![Combined stars](https://img.shields.io/badge/Combined_stars-114%2C664-22C55E?style=for-the-badge&logo=github&logoColor=white)](#-stats---live)
 [![Keyless feeds](https://img.shields.io/badge/Keyless_feeds-17_of_26-000000?style=for-the-badge&logo=rss&logoColor=white)](#-cat-feedstxt)
 [![Refreshed](https://img.shields.io/badge/Refreshed-2026-09-09-166534?style=for-the-badge&logo=githubactions&logoColor=white)](#-refresh)
 
@@ -30,10 +30,10 @@ you@github:~$ cat gods-eye-index.txt
 
   PURPOSE:        One list of every "God's Eye" style live world-map / intel dashboard on GitHub
   TRACKED:        3 projects, all active, all in the thousands of stars
-  COMBINED:       114,660 stars across the tracked set
+  COMBINED:       114,664 stars across the tracked set
   FEEDS:          26 shared upstream data sources, 17 of them keyless
   SOURCE:         data/projects.db is the truth; README is generated from it
-  REFRESHED:      2026-09-09 06:06 UTC
+  REFRESHED:      2026-09-09 06:10 UTC
   STATUS:         [ ACTIVE ]
 ```
 
@@ -47,8 +47,8 @@ you@github:~$ cat gods-eye-index.txt
 
 | # | PROJECT | STARS | FORKS | ISSUES | LICENSE | LANG | PUSHED | STATUS |
 |:-:|:--------|------:|------:|-------:|:-------:|:----:|:------:|:------:|
-| 1 | [World Monitor](https://github.com/koala73/worldmonitor) | `85,870` | `12,978` | `285` | AGPL-3.0 | TypeScript | 2026-09-09 | `active` |
-| 2 | [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view) | `19,826` | `4,057` | `144` | MIT (code) | JavaScript | 2026-09-05 | `active` |
+| 1 | [World Monitor](https://github.com/koala73/worldmonitor) | `85,871` | `12,978` | `284` | AGPL-3.0 | TypeScript | 2026-09-09 | `active` |
+| 2 | [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view) | `19,829` | `4,060` | `144` | MIT (code) | JavaScript | 2026-09-05 | `active` |
 | 3 | [OSIRIS](https://github.com/simplifaisoul/osiris) | `8,964` | `1,835` | `9` | MIT | TypeScript | 2026-09-09 | `active` |
 
 </div>
@@ -63,7 +63,7 @@ Active and massive. Forks, rebrands, dead clones and same-name projects are deli
 
 ### [World Monitor](https://github.com/koala73/worldmonitor)
 
-`85,870 stars` · `AGPL-3.0` · `TypeScript` · `pushed 2026-09-09` · `active` · [worldmonitor.app](https://worldmonitor.app)
+`85,871 stars` · `AGPL-3.0` · `TypeScript` · `pushed 2026-09-09` · `active` · [worldmonitor.app](https://worldmonitor.app)
 
 **The reference project: 500+ news feeds, 56 layer types, AI briefs, dual globe/flat engine, Tauri desktop, MCP server + REST + SDKs.**
 
@@ -82,7 +82,7 @@ Started January 2026 as one developer's personal dashboard and became the bigges
 
 ### [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view)
 
-`19,826 stars` · `MIT (code)` · `JavaScript` · `pushed 2026-09-05` · `active` · [maptheworld.ai](https://maptheworld.ai/)
+`19,829 stars` · `MIT (code)` · `JavaScript` · `pushed 2026-09-05` · `active` · [maptheworld.ai](https://maptheworld.ai/)
 
 **The cinematic one: CesiumJS + Google Photorealistic 3D Tiles, cockpit ride-alongs, FLIR/NVG sensor modes, voice agent. Keyless start on Esri imagery.**
 
@@ -120,6 +120,20 @@ Open Source Intelligence & Reconnaissance Integrated System. Next.js 16 + TypeSc
 
 ---
 
+## `> ls --closed-source`
+
+Hosted competitors with no public repo. Listed so the picture is complete, not because you can clone them.
+
+### [WarWatch](https://www.war-watch.com/)
+
+`live` · `Next.js, 3D globe, market tape` · `Free / Premium EUR 26.99 a year / API EUR 279.99 a year (10k req per month)` · [war-watch.com](https://www.war-watch.com/)
+
+**Closed-source Next.js SaaS: 3D conflict globe scored from 45 news/OSINT sources, vessel + aircraft tracking, strait transit monitors, AI daily reports. Login, free tier and paid pricing; no GitHub.**
+
+"Live global conflict map." Tracks armed conflict from 45 wire services, regional press, verified Telegram channels and geolocated incident feeds, and scores every country on how much conflict reporting it is generating (their own caveat: severity measures reporting volume per country, not casualties or territory). Click a country for its dossier, a marker for an alert, a strait for its transit monitor. Also: OSINT news feed, live streams, commodities tape, top-conflicts ranking with live report counts, live vessel and aircraft tracking, military site monitoring, AI-generated War Daily Reports. Three tiers: Free (map, HIGH-priority feed, country scores), Premium at EUR 26.99 a year (CRITICAL alerts, live ADS-B + naval + 100 military sites, 1,419 supply-chain assets, 18 strait monitors, 70 commodities, country dossiers, daily reports by email) and an API tier at EUR 279.99 a year with 10,000 requests a month. Built on Next.js (App Router build chunks visible in the page source). Has LOGIN, JOIN FREE and PRICING, and no source link anywhere on the site. Not to be confused with warwatchlive.com (a different one-page conflict site), warmonit.com (a rebranded World Monitor deployment) or nitinchhabria89/WarWatch.World (an unrelated 3-star MIT repo).
+
+---
+
 ## `> diff --core`
 
 | | **World Monitor** | **God's Eye View** | **OSIRIS** |
@@ -130,7 +144,7 @@ Open Source Intelligence & Reconnaissance Integrated System. Next.js 16 + TypeSc
 | Stores history | no (Pro tier sells longer history) | no | no |
 | Keyless start | yes, runs with no env vars | yes (Esri imagery; flights, mil, sats, quakes, cams, radio, launches all keyless) | mostly; OpenSky anonymous, FIRMS and N2YO need keys |
 | License | AGPL-3.0 | MIT (code) | MIT |
-| Stars | `85,870` | `19,826` | `8,964` |
+| Stars | `85,871` | `19,829` | `8,964` |
 | Signature | AI briefs + CII + MCP/SDKs | cockpit view + 3D tiles + voice | RECON toolkit + Telegram + OFAC |
 
 **What none of them do:** keep history you own (every one is a live snapshot; God's Eye View's README says going back in time is "the expensive part"), show per-layer provenance and freshness on the map, or run fully self-hosted without a cloud edge / Redis / third-party key chain. City Monitor is the only one that writes to a database. Those gaps are the spec for the next one.
@@ -203,7 +217,7 @@ Gods-Eye-Index/
 
 <div align="center">
 
-**Maintained by** [@Ringmast4r](https://github.com/Ringmast4r) · stats via `gh api`, refreshed 2026-09-09 06:06 UTC
+**Maintained by** [@Ringmast4r](https://github.com/Ringmast4r) · stats via `gh api`, refreshed 2026-09-09 06:10 UTC
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:166534,100:000000&height=120&section=footer&text=WATCH%20THE%20WATCHERS&fontSize=18&fontColor=ffffff&fontAlignY=65"/>
 
