@@ -1,20 +1,22 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:166534&height=220&section=header&text=GODS%20EYE%20INDEX&fontSize=64&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=3%20projects%20%7C%20114%2C664%20combined%20stars%20%7C%2026%20shared%20feeds%20%7C%20tracked%2C%20not%20starred&descSize=18&descAlignY=58"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:176B3A&height=220&section=header&text=GODS%20EYE%20INDEX&fontSize=64&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=3%20projects%20%7C%20114%2C664%20combined%20stars%20%7C%2026%20shared%20feeds%20%7C%20tracked%2C%20not%20starred&descSize=18&descAlignY=58"/>
+
+`Web` [`Python`](https://www.python.org/) `OSINT` `Reference` - Index of every God's Eye / World Monitor style live world-map intel dashboard on GitHub, with live stars and the feeds they share
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=22C55E&center=true&vCenter=true&multiline=true&repeat=true&width=950&height=80&lines=Every+God%27s+Eye+style+world+map+in+one+list.;World+Monitor+%C2%B7+God%27s+Eye+View+%C2%B7+OSIRIS+%C2%B7+and+the+rest;Tracked+here+so+I+don%27t+have+to+star+them+all.)](https://git.io/typing-svg)
 
 <br>
 
-[![Projects](https://img.shields.io/badge/Projects-3-166534?style=for-the-badge&logo=github&logoColor=white)](#-ls---core)
+[![Projects](https://img.shields.io/badge/Projects-3-176B3A?style=for-the-badge&logo=github&logoColor=white)](#-ls---core)
 [![Combined stars](https://img.shields.io/badge/Combined_stars-114%2C664-22C55E?style=for-the-badge&logo=github&logoColor=white)](#-stats---live)
 [![Keyless feeds](https://img.shields.io/badge/Keyless_feeds-17_of_26-000000?style=for-the-badge&logo=rss&logoColor=white)](#-cat-feedstxt)
-[![Refreshed](https://img.shields.io/badge/Refreshed-2026-09-09-166534?style=for-the-badge&logo=githubactions&logoColor=white)](#-refresh)
+[![Refreshed](https://img.shields.io/badge/Refreshed-2026--09--09-176B3A?style=for-the-badge&logo=githubactions&logoColor=white)](#-refresh)
 
-[![Stars](https://img.shields.io/github/stars/Ringmast4r/Gods-Eye-Index?style=flat-square&color=166534&label=%E2%98%85%20Stars)](https://github.com/Ringmast4r/Gods-Eye-Index/stargazers)
+[![Stars](https://img.shields.io/github/stars/Ringmast4r/Gods-Eye-Index?style=flat-square&color=176B3A&label=%E2%98%85%20Stars)](https://github.com/Ringmast4r/Gods-Eye-Index/stargazers)
 [![Forks](https://img.shields.io/github/forks/Ringmast4r/Gods-Eye-Index?style=flat-square&color=22C55E&label=%E2%9A%A1%20Forks)](https://github.com/Ringmast4r/Gods-Eye-Index/network/members)
 [![Repo Size](https://img.shields.io/github/repo-size/Ringmast4r/Gods-Eye-Index?style=flat-square&color=000000)](#)
-[![Last Commit](https://img.shields.io/github/last-commit/Ringmast4r/Gods-Eye-Index?style=flat-square&color=166534)](https://github.com/Ringmast4r/Gods-Eye-Index/commits/main)
+[![Last Commit](https://img.shields.io/github/last-commit/Ringmast4r/Gods-Eye-Index?style=flat-square&color=176B3A)](https://github.com/Ringmast4r/Gods-Eye-Index/commits/main)
 [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Ringmast4r.Gods-Eye-Index)](#)
 
 <img src="assets/logo.svg" alt="Gods Eye Index" width="220">
@@ -219,6 +221,6 @@ Gods-Eye-Index/
 
 **Maintained by** [@Ringmast4r](https://github.com/Ringmast4r) · stats via `gh api`, refreshed 2026-09-09 06:10 UTC
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:166534,100:000000&height=120&section=footer&text=WATCH%20THE%20WATCHERS&fontSize=18&fontColor=ffffff&fontAlignY=65"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:176B3A,100:000000&height=120&section=footer&text=WATCH%20THE%20WATCHERS&fontSize=18&fontColor=ffffff&fontAlignY=65"/>
 
 </div>
